@@ -11,7 +11,7 @@
     "start": "rm -rf tmp dist && ember s",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/rynam0/ember-swagger-ui",
   "engines": {
     "node": ">= 0.10.0"
   },

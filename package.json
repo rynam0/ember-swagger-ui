@@ -1,6 +1,6 @@
 {
   "name": "ember-swagger-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The default blueprint for ember-cli addons.",
   "main": "index.js",
   "directories": {
@@ -12,7 +12,10 @@
     "start": "rm -rf tmp dist && ember s",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/rynam0/ember-swagger-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rynam0/ember-swagger-ui"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },

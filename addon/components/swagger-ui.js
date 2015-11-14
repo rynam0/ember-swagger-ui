@@ -59,7 +59,7 @@ export default Ember.Component.extend({
 
   _addApiKeyAuthorization() {
     var key = encodeURIComponent(this.$('#input_apiKey')[0].value);
-    if(key && key.trim() != "") {
+    if(key && key.trim() !== "") {
       let authKeyHeader = new SwaggerClient.ApiKeyAuthorization("Authorization", "Bearer " + key, "header");
       this.get('_swaggerUi').api.clientAuthorizations.add("Authorization", authKeyHeader);
     }

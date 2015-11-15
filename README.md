@@ -1,5 +1,8 @@
 # ember-swagger-ui
 
+[![Build Status](https://travis-ci.org/rynam0/ember-swagger-ui.svg?branch=master)](https://travis-ci.org/rynam0/ember-swagger-ui)
+[![npm version](https://badge.fury.io/js/ember-swagger-ui.svg)](http://badge.fury.io/js/ember-swagger-ui)
+
 An [ember-cli](http://www.ember-cli.com) addon for quickly and easily adding [swagger-ui](https://github.com/swagger-api/swagger-ui) components to your ember application. 
 
 ## Usage

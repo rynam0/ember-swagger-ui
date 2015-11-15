@@ -1,24 +1,38 @@
-# Ember-swagger-ui
+# ember-swagger-ui
 
-This README outlines the details of collaborating on this Ember addon.
+An [ember-cli](http://www.ember-cli.com) addon for quickly and easily adding [swagger-ui](https://github.com/swagger-api/swagger-ui) components to your ember application. 
 
-## Installation
+## Usage
+```
+$ ember install ember-swagger-ui
+```
+
+## The Component
+```
+{{swagger-ui title="My Awesome API" url="http://petstore.swagger.io/v2/swagger.json"}}
+```
+
+
+
+## Contributing
+
+### Installation
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
 
-## Running
+### Running
 
 * `ember server`
 * Visit your app at http://localhost:4200.
 
-## Running Tests
+### Running Tests
 
 * `ember test`
 * `ember test --server`
 
-## Building
+### Building
 
 * `ember build`
 

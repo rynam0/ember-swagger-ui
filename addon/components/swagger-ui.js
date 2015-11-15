@@ -1,3 +1,5 @@
+/* global $:false */
+
 import Ember from 'ember';
 import layout from '../templates/components/swagger-ui';
 
@@ -5,6 +7,11 @@ export default Ember.Component.extend({
   layout: layout,
 
   classNames: ['swagger-section'],
+
+  /**
+   * Store the original pushState function in order to restore it on willDestroyElement.
+   */
+  bbqPushState: $.bbq.pushState,
 
   /* Supported Component properties */
   url: null,
@@ -15,6 +22,11 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this._initSwaggerUi();
+  },
+
+  willDestroyElement() {
+    // restore the original pushState function
+    $.bbq.pushState = this.get('bbqPushState');
   },
 
 
@@ -37,6 +49,12 @@ export default Ember.Component.extend({
         // todo: initOAuth
         that._addApiKeyAuthorization();
         that._highlight();
+
+        // we need to no-op a jquery plugin function that routes us to index if not overridden.
+        $.bbq.pushState = function() { };
+        // and remove href links that will also attempt to route us out of our known ember routes
+        that.$('a').removeAttr('href');
+
       },
       onFailure: function() {
         console.log('Failed to load SwaggerUi');

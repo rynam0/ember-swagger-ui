@@ -16,9 +16,13 @@ export default Ember.Component.extend({
   handleLoginGlobal: window.handleLogin,
 
   /* Supported Component properties */
+  title: null,
   url: null,
   apiKey: null,
-  title: null,
+  docExpansion: 'none',
+  showRequestHeaders: false,
+  supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+
 
   didInsertElement() {
     this._initSwaggerUi();
@@ -40,10 +44,10 @@ export default Ember.Component.extend({
       url: url,
       validatorUrl: null,
       dom_id: 'swagger-ui-container',
-      docExpansion: 'list',
+      docExpansion: that.get('docExpansion'),
       apisSorter: 'alpha',
-      showRequestHeaders: true,
-      supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+      showRequestHeaders: that.get('showRequestHeaders'),
+      supportedSubmitMethods: that.get('supportedSubmitMethods'),
       onComplete: function() {
 
         if(typeof window.initOAuth === "function") {

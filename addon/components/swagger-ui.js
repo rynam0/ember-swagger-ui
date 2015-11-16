@@ -13,12 +13,12 @@ export default Ember.Component.extend({
    */
   bbqPushState: $.bbq.pushState,
 
+  handleLoginGlobal: window.handleLogin,
+
   /* Supported Component properties */
   url: null,
   apiKey: null,
   title: null,
-
-  _swaggerUi: null,
 
   didInsertElement() {
     this._initSwaggerUi();
@@ -36,7 +36,7 @@ export default Ember.Component.extend({
 
     that._translate();
 
-    let swaggerUi = new SwaggerUi({
+    window.swaggerUi = new SwaggerUi({
       url: url,
       validatorUrl: null,
       dom_id: 'swagger-ui-container',
@@ -45,28 +45,49 @@ export default Ember.Component.extend({
       showRequestHeaders: true,
       supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
       onComplete: function() {
+
+        if(typeof window.initOAuth === "function") {
+          window.initOAuth({
+            clientId: "your-client-id",
+            clientSecret: "your-client-secret",
+            realm: "your-realms",
+            appName: "your-app-name",
+            scopeSeparator: ","
+          });
+        }
+
         that._translate();
-        // todo: initOAuth
         that._addApiKeyAuthorization();
         that._highlight();
 
         // we need to no-op a jquery plugin function that routes us to index if not overridden.
         $.bbq.pushState = function() { };
+
         // and remove href links that will also attempt to route us out of our known ember routes
         that.$('a').removeAttr('href');
+
+        // move the generated dialog element to the component's element
+        window.handleLogin = function() {
+          that.$('.api-popup-dialog').remove();
+          that.handleLoginGlobal();
+          Ember.run.later(function() {
+            let dialog = $('.api-popup-dialog');
+            that.$().append(dialog);
+            dialog.css('display', 'block');
+          }, 500);
+        };
 
       },
       onFailure: function() {
         console.log('Failed to load SwaggerUi');
       }
     });
-    this.set('_swaggerUi', swaggerUi);
 
     let keyInput = this.$('#input_apiKey');
     keyInput.change(this._addApiKeyAuthorization);
     keyInput.val(this.get('apiKey'));
 
-    swaggerUi.load();
+    window.swaggerUi.load();
   },
 
   _translate() {
@@ -78,8 +99,9 @@ export default Ember.Component.extend({
   _addApiKeyAuthorization() {
     var key = encodeURIComponent(this.$('#input_apiKey')[0].value);
     if(key && key.trim() !== "") {
-      let authKeyHeader = new SwaggerClient.ApiKeyAuthorization("Authorization", "Bearer " + key, "header");
-      this.get('_swaggerUi').api.clientAuthorizations.add("Authorization", authKeyHeader);
+      // todo: support clientAuthorizations configuration
+      var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+      window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
     }
   },
 

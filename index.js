@@ -34,6 +34,9 @@ module.exports = {
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/handlebars-2.0.0.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/backbone-min.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/highlight.7.3.pack.js', { exports: { 'hljs': ['default']}});
+    app.import(app.bowerDirectory + '/swagger-ui/dist/lib/swagger-oauth.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/swagger-ui.js');
+
+    app.import(app.bowerDirectory + '/swagger-ui/dist/o2c.html', { destDir: '/' });
   }
 };

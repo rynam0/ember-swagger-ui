@@ -5,6 +5,10 @@
 
 An [ember-cli](http://www.ember-cli.com) addon for quickly and easily adding [swagger-ui](https://github.com/swagger-api/swagger-ui) components to your ember application. 
 
+
+![Screenshot](screenshot.png?raw=true "Screenshot")
+
+
 ## Usage
 ```
 $ ember install ember-swagger-ui

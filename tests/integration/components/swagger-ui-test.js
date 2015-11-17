@@ -30,12 +30,6 @@ test('accepts a url', function(assert) {
   assert.equal(this.$('#input_baseUrl').val(), this.get('apiUrl'));
 });
 
-test('accepts an api key', function(assert) {
-  this.set('key', 'secret');
-  this.render(hbs`{{swagger-ui apiKey=key}}`);
-  assert.equal(this.$('#input_apiKey').val(), this.get('key'));
-});
-
 skip('docExpansion as list', function(assert) {
   this.set('expansion', 'list');
   this.render(hbs`{{swagger-ui docExpansion=expansion}}`);
@@ -43,5 +37,4 @@ skip('docExpansion as list', function(assert) {
     let eles = this.$('.endpoints');
     assert.ok(eles.length > 0);
   });
-
 });

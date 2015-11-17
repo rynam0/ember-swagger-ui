@@ -18,11 +18,10 @@ export default Ember.Component.extend({
   /* Supported Component properties */
   title: null,
   url: null,
-  apiKey: null,
   docExpansion: 'none',
   showRequestHeaders: false,
   supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-
+  authorizations: null,
 
   didInsertElement() {
     this._initSwaggerUi();
@@ -92,7 +91,6 @@ export default Ember.Component.extend({
 
     let keyInput = this.$('#input_apiKey');
     keyInput.change(this._addApiKeyAuthorization);
-    keyInput.val(this.get('apiKey'));
 
     window.swaggerUi.load();
   },
@@ -103,18 +101,24 @@ export default Ember.Component.extend({
     }
   },
 
+
   _addApiKeyAuthorization() {
-    let input = this.$('#input_apiKey');
-    if (input) {
-      let key = encodeURIComponent(input[0].value);
-      if(key && key.trim() !== "") {
-        // todo: support clientAuthorizations configuration
-        var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
-        window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
+    let authz = this.get('authorizations');
+    if (authz) {
+      if (authz.type === 'query') {
+        $('#input_apiKey').val(authz.value);
       }
+
+      var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization(authz.name, authz.value, authz.type);
+      window.swaggerUi.api.clientAuthorizations.add(authz.name, apiKeyAuth);
     }
   },
 
+
+
+  /**
+   * Highlights code blocks.
+   */
   _highlight() {
     let codes = this.$('pre code');
     if (codes) {

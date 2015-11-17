@@ -68,7 +68,10 @@ export default Ember.Component.extend({
         $.bbq.pushState = function() { };
 
         // and remove href links that will also attempt to route us out of our known ember routes
-        that.$('a').removeAttr('href');
+        let anchors = that.$('a');
+        if (anchors) {
+          anchors.removeAttr('href');
+        }
 
         // move the generated dialog element to the component's element
         window.handleLogin = function() {
@@ -101,18 +104,24 @@ export default Ember.Component.extend({
   },
 
   _addApiKeyAuthorization() {
-    var key = encodeURIComponent(this.$('#input_apiKey')[0].value);
-    if(key && key.trim() !== "") {
-      // todo: support clientAuthorizations configuration
-      var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
-      window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
+    let input = this.$('#input_apiKey');
+    if (input) {
+      let key = encodeURIComponent(input[0].value);
+      if(key && key.trim() !== "") {
+        // todo: support clientAuthorizations configuration
+        var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+        window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
+      }
     }
   },
 
   _highlight() {
-    this.$('pre code').each(function(i, e) {
-       hljs.highlightBlock(e);
-    });
+    let codes = this.$('pre code');
+    if (codes) {
+      codes.each(function(i, e) {
+         hljs.highlightBlock(e);
+      });
+    }
   }
 
 });

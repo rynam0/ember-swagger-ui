@@ -16,6 +16,20 @@
 
     {{content-for 'head-footer'}}
     {{content-for 'test-head-footer'}}
+
+    <script>
+      // PhantomJS doesn't support bind until 2.x once upgraded to 2.x, this should be removed.
+      if (!Function.prototype.bind) {
+        Function.prototype.bind = Function.prototype.bind || function (thisp) {
+            var fn = this;
+            return function () {
+              return fn.apply(thisp, arguments);
+            };
+          };
+      }
+    </script>
+
+
   </head>
   <body>
 

@@ -1,6 +1,6 @@
 {
   "name": "ember-swagger-ui",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "An ember-cli addon for adding swagger-ui to your ember app",
   "main": "index.js",
   "directories": {

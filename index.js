@@ -20,13 +20,14 @@ module.exports = {
 
     app.import(app.bowerDirectory + '/swagger-ui/dist/images/explorer_icons.png', { destDir: 'images' });
     app.import(app.bowerDirectory + '/swagger-ui/dist/images/throbber.gif', { destDir: 'images' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/images/logo_small.png', { destDir: 'images' });
 
     app.import(app.bowerDirectory + '/swagger-ui/dist/css/typography.css');
     app.import(app.bowerDirectory + '/swagger-ui/dist/css/reset.css');
     app.import(app.bowerDirectory + '/swagger-ui/dist/css/screen.css');
 
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/marked.js');
-    app.import(app.bowerDirectory + '/swagger-ui/dist/lib/jquery-1.8.0.min.js');
+    app.import(app.bowerDirectory + '/jquery-migrate/jquery-migrate.min.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/jquery.ba-bbq.min.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/jquery.slideto.min.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/jquery.wiggle.min.js');

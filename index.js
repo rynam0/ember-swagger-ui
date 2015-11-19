@@ -39,7 +39,5 @@ module.exports = {
     app.import(app.bowerDirectory + '/swagger-ui/dist/swagger-ui.js');
 
     app.import(app.bowerDirectory + '/swagger-ui/dist/o2c.html', { destDir: '/' });
-
-    app.import('vendor/ember-swagger-ui/bind-detection.js', { type: 'test' });
   }
 };

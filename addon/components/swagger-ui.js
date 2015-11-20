@@ -16,6 +16,7 @@ export default Ember.Component.extend({
   /* Supported Component properties */
   title: null,
   url: null,
+  spec: null,
   docExpansion: 'none',
   showRequestHeaders: false,
   supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
@@ -39,6 +40,7 @@ export default Ember.Component.extend({
 
     window.swaggerUi = new SwaggerUi({
       url: url,
+      spec: that.get('spec'),
       validatorUrl: null,
       dom_id: 'swagger-ui-container',
       docExpansion: that.get('docExpansion'),

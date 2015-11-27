@@ -66,12 +66,6 @@ export default Ember.Component.extend({
         // we need to no-op a jquery plugin function that routes us to index if not overridden.
         Ember.$.bbq.pushState = function() { };
 
-        // and remove href links that will also attempt to route us out of our known ember routes
-        let anchors = that.$('#resources_container a');
-        if (anchors) {
-          anchors.removeAttr('href');
-        }
-
         // move the generated dialog element to the component's element
         window.handleLogin = function() {
           that.$('.api-popup-dialog').remove();

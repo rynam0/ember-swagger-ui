@@ -7,8 +7,16 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
 
-    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/DroidSans.ttf', { destDir: 'fonts' });
-    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/DroidSans-Bold.ttf', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-700.eot', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-700.svg', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-700.ttf', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-700.woff', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-700.woff2', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-regular.eot', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-regular.svg', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-regular.ttf', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-regular.woff', { destDir: 'fonts' });
+    app.import(app.bowerDirectory + '/swagger-ui/dist/fonts/droid-sans-v6-latin-regular.woff2', { destDir: 'fonts' });
 
     app.import(app.bowerDirectory + '/swagger-ui/dist/images/explorer_icons.png', { destDir: 'images' });
     app.import(app.bowerDirectory + '/swagger-ui/dist/images/throbber.gif', { destDir: 'images' });
@@ -27,7 +35,6 @@ module.exports = {
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/backbone-min.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/highlight.7.3.pack.js', { exports: { 'hljs': ['default']}});
     app.import(app.bowerDirectory + '/swagger-ui/dist/lib/swagger-oauth.js');
-    app.import(app.bowerDirectory + '/swagger-ui/dist/lib/jsoneditor.min.js');
     app.import(app.bowerDirectory + '/swagger-ui/dist/swagger-ui.js');
 
     app.import(app.bowerDirectory + '/swagger-ui/dist/o2c.html', { destDir: '/' });

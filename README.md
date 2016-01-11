@@ -9,16 +9,6 @@ An [ember-cli](http://www.ember-cli.com) addon for quickly and easily adding [sw
 ![Screenshot](screenshot.png?raw=true "Screenshot")
 
 
-## Swagger-UI Versions
-
-The addon currently supports the following swagger-ui versions:
-
-| ember-swagger-ui  | swagger-ui |
-| ----------------- | ---------- |
-| 0.0.17            | 2.1.3      |
-| 0.0.18            | 2.1.4      |
-
-
 ## Installation
 ```
 $ ember install ember-swagger-ui

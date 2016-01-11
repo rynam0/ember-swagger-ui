@@ -5,12 +5,10 @@ module.exports = {
   normalizeEntityName: function() {},
 
   beforeInstall: function(options) {
-    var that = this;
-    return that.addBowerPackageToProject('swagger-ui', '~2.1.3').then(function() {
-      return that.addBowerPackageToProject('underscore', '~1.8.3').then(function() {
-        return that.addBowerPackageToProject('jquery-migrate', '1.2.1');
-      });
-    });
-
+    return this.addBowerPackagesToProject([
+      { name: 'swagger-ui', target: '2.1.3' },
+      { name: 'underscore', target: '1.8.3' },
+      { name: 'jquery-migrate', target: '1.2.1' }
+    ]);
   }
 };

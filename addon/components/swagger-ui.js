@@ -21,6 +21,8 @@ export default Ember.Component.extend({
   showRequestHeaders: false,
   supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
   authorizations: null,
+  onComplete: null,
+  onFailure: null,
 
   didInsertElement() {
     this._initSwaggerUi();
@@ -47,7 +49,7 @@ export default Ember.Component.extend({
       apisSorter: 'alpha',
       showRequestHeaders: that.get('showRequestHeaders'),
       supportedSubmitMethods: that.get('supportedSubmitMethods'),
-      onComplete: function() {
+      onComplete: this.get("onComplete") || function() {
 
         if(typeof window.initOAuth === "function") {
           window.initOAuth({
@@ -83,7 +85,7 @@ export default Ember.Component.extend({
           input.change(that._addApiKeyAuthorization(that));
         }
       },
-      onFailure: function() {
+      onFailure: this.get("onFailure") || function() {
         console.log('Failed to load SwaggerUi');
       }
     });

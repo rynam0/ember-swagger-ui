@@ -35,6 +35,7 @@ before_install:
 
 install:
   - npm install -g bower
+  - npm -g install phantomjs-prebuilt
   - npm install
   - bower install
 

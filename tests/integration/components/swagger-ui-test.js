@@ -107,3 +107,18 @@ test('supportedSubmitMethods (all)', function(assert) {
     assert.ok($deletes.length > 0);
   });
 });
+
+test('custom onComplete', function(assert) {
+  let completedCalled = false;
+  function customComplete() {
+    completedCalled = true;
+  }
+  this.set('swag', spec);
+  this.set('expansion', 'none');
+  this.set('customComplete', customComplete);
+  this.render(hbs`{{swagger-ui docExpansion=expansion onComplete=customComplete spec=swag}}`);
+
+  return wait().then(() => {
+    assert.ok(completedCalled);
+  });
+});

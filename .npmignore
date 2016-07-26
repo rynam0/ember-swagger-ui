@@ -1,4 +1,4 @@
-bower_components/
+/bower_components
 /config/ember-try.js
 /dist
 /tests
@@ -11,9 +11,6 @@ bower_components/
 .jshintrc
 .watchmanconfig
 .travis.yml
-.npmignore
 bower.json
 ember-cli-build.js
-Brocfile.js
-testem.json
-.idea
+testem.js

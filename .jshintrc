@@ -2,6 +2,9 @@
   "predef": [
     "document",
     "window",
+    "SwaggerUi",
+    "SwaggerClient",
+    "hljs",
     "-Promise"
   ],
   "browser": true,

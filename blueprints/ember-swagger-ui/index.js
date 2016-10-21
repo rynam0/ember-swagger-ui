@@ -6,8 +6,7 @@ module.exports = {
 
   beforeInstall: function(options) {
     return this.addBowerPackagesToProject([
-      { name: 'swagger-ui', target: '2.1.3' },
-      { name: 'underscore', target: '1.8.3' },
+      { name: 'swagger-ui', target: '2.2.6' },
       { name: 'jquery-migrate', target: '1.2.1' }
     ]);
   }

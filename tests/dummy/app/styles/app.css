@@ -1,4 +1,7 @@
-
 body {
   margin: 0;
+}
+
+.logo__title {
+  padding-left: 0 !important;
 }

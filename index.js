@@ -14,7 +14,6 @@ module.exports = {
     app.import(app.bowerDirectory + '/swagger-ui/dist/images/throbber.gif', { destDir: 'images' });
     app.import(app.bowerDirectory + '/swagger-ui/dist/images/logo_small.png', { destDir: 'images' });
 
-    app.import(app.bowerDirectory + '/swagger-ui/dist/css/typography.css');
     app.import(app.bowerDirectory + '/swagger-ui/dist/css/reset.css');
     app.import(app.bowerDirectory + '/swagger-ui/dist/css/screen.css');
 

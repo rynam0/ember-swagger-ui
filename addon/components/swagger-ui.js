@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/swagger-ui';
-import _ from 'lodash';
 
 export default Ember.Component.extend({
   layout: layout,
@@ -42,22 +41,27 @@ export default Ember.Component.extend({
     };
 
     /* Supported Component properties */
-    let propertyOptions = this.getProperties([
+    let propertyList = [
       'url',
       'docExpansion',
       'supportedSubmitMethods',
       'showRequestHeaders',
       'onComplete',
       'onFailure'
-    ]);
-    propertyOptions = _.omitBy(propertyOptions, _.isUndefined);
+    ];
+    let propertyOptions = this.getProperties(propertyList);
+    for (let i = 0; i < propertyList.length; i++) {
+      if (propertyOptions[propertyList[i]] === undefined) {
+        delete propertyOptions[propertyList[i]];
+      }
+    }
 
     // Options that are passed in from one object
     let swaggerOptions = this.getWithDefault('swaggerOptions', {});
     // Properties get highest priority followed by the object-based options and the defaults
-    _.defaults(propertyOptions, swaggerOptions, defaultOptions);
+    let options = Object.assign({}, defaultOptions, swaggerOptions, propertyOptions);
 
-    window.swaggerUi = new SwaggerUi(propertyOptions);
+    window.swaggerUi = new SwaggerUi(options);
     window.swaggerUi.load();
   },
 

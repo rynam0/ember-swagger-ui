@@ -12,31 +12,6 @@ test('it renders', function(assert) {
   assert.ok(this.$());
 });
 
-// todo: revisit
-//test('has a title', function(assert) {
-//  this.set('logoTitle', 'Cool API');
-//  this.render(hbs`{{swagger-ui title=logoTitle}}`);
-//
-//  let $logo = this.$('#logo');
-//  assert.equal($logo.text(), 'Cool API');
-//});
-//
-//test('has a default url', function(assert) {
-//  this.render(hbs`{{swagger-ui}}`);
-//
-//  let $baseUrl = this.$('#input_baseUrl');
-//  assert.equal($baseUrl.val(), 'http://petstore.swagger.io/v2/swagger.json');
-//});
-
-//test('accepts a url', function(assert) {
-//  let url = 'http://petstore.swagger.io/v2/swagger.json';
-//  this.set('apiUrl', url);
-//  this.render(hbs`{{swagger-ui url=apiUrl}}`);
-//
-//  let $baseUrl = this.$('#input_baseUrl');
-//  assert.equal($baseUrl.val(), url);
-//});
-
 test('docExpansion as "none"', function(assert) {
   this.set('swag', spec);
   this.set('expansion', 'none');

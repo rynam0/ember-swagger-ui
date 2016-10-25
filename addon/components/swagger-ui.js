@@ -47,7 +47,8 @@ export default Ember.Component.extend({
       'supportedSubmitMethods',
       'showRequestHeaders',
       'onComplete',
-      'onFailure'
+      'onFailure',
+      'spec'
     ];
     let propertyOptions = this.getProperties(propertyList);
     for (let i = 0; i < propertyList.length; i++) {

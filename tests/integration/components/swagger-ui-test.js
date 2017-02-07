@@ -12,31 +12,6 @@ test('it renders', function(assert) {
   assert.ok(this.$());
 });
 
-// todo: revisit
-//test('has a title', function(assert) {
-//  this.set('logoTitle', 'Cool API');
-//  this.render(hbs`{{swagger-ui title=logoTitle}}`);
-//
-//  let $logo = this.$('#logo');
-//  assert.equal($logo.text(), 'Cool API');
-//});
-//
-//test('has a default url', function(assert) {
-//  this.render(hbs`{{swagger-ui}}`);
-//
-//  let $baseUrl = this.$('#input_baseUrl');
-//  assert.equal($baseUrl.val(), 'http://petstore.swagger.io/v2/swagger.json');
-//});
-
-//test('accepts a url', function(assert) {
-//  let url = 'http://petstore.swagger.io/v2/swagger.json';
-//  this.set('apiUrl', url);
-//  this.render(hbs`{{swagger-ui url=apiUrl}}`);
-//
-//  let $baseUrl = this.$('#input_baseUrl');
-//  assert.equal($baseUrl.val(), url);
-//});
-
 test('docExpansion as "none"', function(assert) {
   this.set('swag', spec);
   this.set('expansion', 'none');
@@ -67,6 +42,19 @@ test('docExpansion as "full"', function(assert) {
   this.set('swag', spec);
   this.set('expansion', 'full');
   this.render(hbs`{{swagger-ui docExpansion=expansion spec=swag}}`);
+  return wait().then(() => {
+    let $content = this.$('.content');
+    assert.ok($content.length > 0);
+    assert.notEqual($content.css('display'), 'none');
+  });
+});
+
+test('docExpansion as "full" via swaggerOptions', function(assert) {
+  this.set('swag', spec);
+  this.set('options', {
+    docExpansion: 'full'
+  });
+  this.render(hbs`{{swagger-ui spec=swag swaggerOptions=options}}`);
   return wait().then(() => {
     let $content = this.$('.content');
     assert.ok($content.length > 0);
@@ -120,5 +108,39 @@ test('custom onComplete', function(assert) {
 
   return wait().then(() => {
     assert.ok(completedCalled);
+  });
+});
+
+test('normal failure', function(assert) {
+  // Trigger a failure by providing an invalid url
+  let invalidUrl = '!^Not a valid url!%?';
+  this.set('url', invalidUrl);
+  this.set('expansion', 'none');
+  this.render(hbs`{{swagger-ui docExpansion=expansion url=url}}`);
+
+  return wait().then(() => {
+    assert.ok(true);
+    let errorMessage = this.$('#message-bar').text();
+    assert.ok(errorMessage.indexOf('Failed') >= 0);
+    assert.ok(errorMessage.indexOf(invalidUrl) >= 0);
+  });
+});
+
+test('custom onFailure', function(assert) {
+  let failCalled = false;
+  function customFail() {
+    failCalled = true;
+  }
+  let invalidUrl = '!^Not a valid url!%?';
+  this.set('url', invalidUrl);
+  this.set('expansion', 'none');
+  this.set('customFail', customFail);
+  this.render(hbs`{{swagger-ui docExpansion=expansion onFailure=customFail url=url}}`);
+
+  return wait().then(() => {
+    assert.ok(failCalled);
+    let errorMessage = this.$('#message-bar').text();
+    assert.ok(errorMessage.indexOf('Failed') >= 0);
+    assert.ok(errorMessage.indexOf(invalidUrl) >= 0);
   });
 });

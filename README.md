@@ -111,7 +111,7 @@ actions: {
 ### Installation
 
 * `git clone <repository-url>` this repository
-* cd ember-swagger-ui
+* `cd ember-swagger-ui`
 * `npm install`
 * `bower install`
 
@@ -130,4 +130,4 @@ actions: {
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).

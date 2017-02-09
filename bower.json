@@ -1,9 +1,6 @@
 {
   "name": "ember-swagger-ui",
-  "dependencies": {
-    "ember": "~2.9.0",
-    "ember-cli-shims": "0.1.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "swagger-ui": "~2.2.10",
     "jquery-migrate": "1.2.1",

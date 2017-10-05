@@ -3,7 +3,6 @@
   "dependencies": {},
   "devDependencies": {
     "swagger-ui": "~2.2.10",
-    "jquery-migrate": "1.2.1",
-    "blanket": "5e94fc30f2e694bb5c3718ddcbf60d467f4b4d26"
+    "jquery-migrate": "1.2.1"
   }
 }

@@ -1,7 +1,12 @@
 import Ember from 'ember';
 import layout from '../templates/components/swagger-ui';
 
-export default Ember.Component.extend({
+const {
+  Component,
+  Logger
+} = Ember;
+
+export default Component.extend({
   layout: layout,
 
   classNames: ['swagger-section'],
@@ -87,7 +92,7 @@ export default Ember.Component.extend({
         }
       },
       onFailure: this.get("onFailure") || function() {
-        console.log('Failed to load SwaggerUi');
+        Logger.error('Failed to load SwaggerUi');
       }
     });
 

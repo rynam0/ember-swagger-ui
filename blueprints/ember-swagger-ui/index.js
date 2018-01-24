@@ -5,10 +5,11 @@ module.exports = {
   normalizeEntityName: function() {},
 
   beforeInstall: function(options) {
-    return this.addBowerPackagesToProject([
-      // we want 3.3.1
-      { name: 'swagger-ui', target: '~2.2.10' },
-      { name: 'jquery-migrate', target: '1.2.1' }
-    ]);
+    return this.addAddonToProject({
+      name: 'ember-browserify',
+      target: '^1.2.0'
+    }).then(() => {
+      return this.addPackageToProject('swagger-ui-dist', '^3.9.2');
+    });
   }
 };

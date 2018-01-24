@@ -1,8 +1,0 @@
-{
-  "name": "ember-swagger-ui",
-  "dependencies": {},
-  "devDependencies": {
-    "swagger-ui": "~2.2.10",
-    "jquery-migrate": "1.2.1"
-  }
-}

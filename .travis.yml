@@ -5,7 +5,7 @@ node_js:
   # so that your addon works for all apps
   - "4"
 
-sudo: false
+sudo: required
 dist: trusty
 
 addons:
@@ -18,8 +18,8 @@ cache:
 env:
   # we recommend new addons test the current and previous LTS
   # as well as latest stable release (bonus points to beta/canary)
-  - EMBER_TRY_SCENARIO=ember-lts-2.8
   - EMBER_TRY_SCENARIO=ember-lts-2.12
+  - EMBER_TRY_SCENARIO=ember-lts-2.16.2
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
@@ -33,10 +33,7 @@ matrix:
 before_install:
   - npm config set spin false
   - npm install -g npm@4
-  - npm install -g bower
   - npm --version
-  - bower --version
-  - bower install
 
 script:
   # Usually, it's ok to finish the test scenario without reverting

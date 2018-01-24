@@ -5,11 +5,11 @@ module.exports = {
   normalizeEntityName: function() {},
 
   beforeInstall: function(options) {
-    return this.addAddonsToProject({
-      packages: [
-        { name: 'ember-browserify', target: '^1.2.0' },
-        { name: 'swagger-ui-dist', target: '^3.3.1' }
-      ]
+    return this.addAddonToProject({
+      name: 'ember-browserify',
+      target: '^1.2.0'
+    }).then(() => {
+      return this.addPackageToProject('swagger-ui-dist', '^3.9.2');
     });
   }
 };

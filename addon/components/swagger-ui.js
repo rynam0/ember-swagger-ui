@@ -1,16 +1,9 @@
 import Ember from 'ember';
 import layout from '../templates/components/swagger-ui';
-
 import Swag from 'npm:swagger-ui-dist';
 
-const {
-  Component
-} = Ember;
-
-const {
-  SwaggerUIBundle,
-  SwaggerUIStandalonePreset
-} = Swag;
+const { Component } = Ember;
+const { SwaggerUIBundle } = Swag;
 
 export default Component.extend({
   layout,
@@ -20,17 +13,11 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    SwaggerUIBundle({
-      url: "http://petstore.swagger.io/v2/swagger.json",
-      dom_id: `#${this.get('elementId')}`,
-      presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIStandalonePreset
-      ],
-      plugins: [
-        SwaggerUIBundle.plugins.DownloadUrl
-      ],
-      layout: "StandaloneLayout"
-    });
+    let config = Ember.copy(this.get('config') || { deepLinking: false });
+    if (!config.dom_id) {
+      config.dom_id = `#${this.get('elementId')}`;
+    }
+
+    SwaggerUIBundle(config);
   }
 });

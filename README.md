@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/rynam0/ember-swagger-ui.svg?branch=master)](https://travis-ci.org/rynam0/ember-swagger-ui)
 [![npm version](https://badge.fury.io/js/ember-swagger-ui.svg)](http://badge.fury.io/js/ember-swagger-ui)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-swagger-ui.svg)](http://emberobserver.com/addons/ember-swagger-ui)
-[![Coverage Status](https://coveralls.io/repos/github/rynam0/ember-swagger-ui/badge.png?branch=master)](https://coveralls.io/github/rynam0/ember-swagger-ui?branch=master)
 
 An [ember-cli](http://www.ember-cli.com) addon for quickly and easily adding [swagger-ui](https://github.com/swagger-api/swagger-ui) components to your ember application.
 
@@ -15,7 +14,61 @@ An [ember-cli](http://www.ember-cli.com) addon for quickly and easily adding [sw
 $ ember install ember-swagger-ui
 ```
 
-## Usage
+
+## ember-swagger-ui >= 1.0.0
+
+### About 
+
+As of version 1.0.0, the addon is based on swagger-ui 3.x. Some notable differences from previous versions include: 
+
+- A simplified component API
+- No Bower dependencies
+
+### Configuration
+
+Configuring a component is done by passing a config object to the component's `config` attribute.
+The object takes any and all supported [swagger-ui 3.x configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md)
+
+    // controllers/application.js
+    
+    import Controller from '@ember/controller';
+    import Swag from 'npm:swagger-ui-dist';
+
+    const {
+      SwaggerUIBundle,
+      SwaggerUIStandalonePreset
+    } = Swag;
+
+    export default Controller.extend({
+      swaggerConfig: {
+        url: 'http://petstore.swagger.io/v2/swagger.json',
+        deepLinking: false,
+        presets: [
+          SwaggerUIStandalonePreset,
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout",
+        docExpansion: 'none',
+        tagsSorter: 'alpha',
+        operationsSorter: 'alpha',
+        defaultModelsExpandDepth: -1,
+        defaultModelExpandDepth: 1,
+        validatorUrl: 'https://online.swagger.io/validator'
+      }
+    });
+
+### Usage
+
+    {{!-- application.hbs --}}
+    {{swagger-ui config=swaggerConfig}}
+
+
+## ember-swagger-ui < 1.0.0 (Pre-releases)
+
+### About
+
+Releases preceeding 1.0.0 are based on swagger-ui 2.x and are considered pre-releases.
 
 Many of the swagger-ui configuration properties are available as attributes on the component.
 The currently supported options are documented below.  For more details on each of these options, please refer to the [swagger-ui docs](https://github.com/swagger-api/swagger-ui):

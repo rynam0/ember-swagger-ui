@@ -7,6 +7,9 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
     app.import('node_modules/swagger-ui-dist/swagger-ui.css');
+    app.import('node_modules/swagger-ui-dist/swagger-ui-bundle.js');
+    app.import('node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js');
+    app.import('vendor/shims/swagger-ui.js');
   },
 
   contentFor: function(type, config) {

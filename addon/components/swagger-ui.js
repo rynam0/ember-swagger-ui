@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/swagger-ui';
-import Swag from 'npm:swagger-ui-dist';
+import Swag from 'swagger-ui';
 
 const { Component } = Ember;
 const { SwaggerUIBundle } = Swag;

@@ -32,7 +32,7 @@ The object takes any and all supported [swagger-ui 3.x configuration](https://gi
     // controllers/application.js
     
     import Controller from '@ember/controller';
-    import Swag from 'npm:swagger-ui-dist';
+    import Swag from 'swagger-ui';
 
     const {
       SwaggerUIBundle,

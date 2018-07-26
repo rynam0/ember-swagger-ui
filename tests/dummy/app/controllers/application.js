@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import Swag from 'npm:swagger-ui-dist';
+import Swag from 'swagger-ui';
 
 const {
   SwaggerUIBundle,

@@ -60,8 +60,11 @@
     "swagger"
   ],
   "dependencies": {
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^3.0.1",
     "ember-cli-babel": "^6.3.0",
-    "ember-cli-htmlbars": "^2.0.1"
+    "ember-cli-htmlbars": "^2.0.1",
+    "resolve": "^1.8.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",

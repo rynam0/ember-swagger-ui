@@ -1,13 +1,10 @@
 import Ember from 'ember';
-import layout from '../templates/components/swagger-ui';
 import Swag from 'swagger-ui';
 
 const { Component } = Ember;
 const { SwaggerUIBundle } = Swag;
 
 export default Component.extend({
-  layout,
-
   classNames: ['swagger-ui', 'component-swagger-ui'],
 
   didInsertElement() {

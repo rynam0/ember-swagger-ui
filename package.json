@@ -39,6 +39,7 @@
     "ember-cli": "~2.15.1",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.0.0",
+    "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-qunit": "^4.0.0",
@@ -63,7 +64,6 @@
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^3.0.1",
     "ember-cli-babel": "^6.3.0",
-    "ember-cli-htmlbars": "^2.0.1",
     "resolve": "^1.8.1"
   },
   "ember-addon": {

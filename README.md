@@ -63,6 +63,17 @@ The object takes any and all supported [swagger-ui 3.x configuration](https://gi
     {{!-- application.hbs --}}
     {{swagger-ui config=swaggerConfig}}
 
+### Options
+
+    // ember-cli-build.js
+
+    let app = new EmberAddon(defaults, {
+      'ember-swagger-ui': {
+        // use public tree instead of vendor concat
+        usePublic: true
+      }
+    });
+
 
 ## ember-swagger-ui < 1.0.0 (Pre-releases)
 

@@ -4,19 +4,61 @@
 module.exports = {
   name: 'ember-swagger-ui',
 
-  included: function(app) {
-    this._super.included(app);
-    app.import('node_modules/swagger-ui-dist/swagger-ui.css');
-    app.import('node_modules/swagger-ui-dist/swagger-ui-bundle.js');
-    app.import('node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js');
+  included(app) {
+    this._super.included.apply(this, arguments);
+
+    let options = app.options['ember-swagger-ui'] || {};
+
+    if (!options.usePublic) {
+      app.import('node_modules/swagger-ui-dist/swagger-ui.css');
+      app.import('node_modules/swagger-ui-dist/swagger-ui-bundle.js');
+      app.import('node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js');
+    }
+
     app.import('vendor/shims/swagger-ui.js');
+
+    this._options = options;
+  },
+
+  treeForPublic() {
+    let tree = this._super.treeForPublic.apply(this, arguments);
+
+    if (!this._options.usePublic) {
+      return tree;
+    }
+
+    let trees = [];
+    if (tree) {
+      trees.push(tree);
+    }
+
+    const Funnel = require('broccoli-funnel');
+    const mergeTrees = require('broccoli-merge-trees');
+    const resolve = require('resolve');
+    const path = require('path');
+
+    let absolutePath = resolve.sync('swagger-ui-dist', { basedir: this.project.root });
+
+    trees.push(new Funnel(path.dirname(absolutePath), {
+      files: [
+        'swagger-ui.css',
+        'swagger-ui-bundle.js',
+        'swagger-ui-standalone-preset.js'
+      ],
+      destDir: 'swagger-ui-dist',
+      annotation: `Funnel ${this.name} treeForPublic`
+    }));
+
+    return mergeTrees(trees, { annotation: `Merge ${this.name} treeForPublic` });
   },
 
   contentFor: function(type, config) {
     if (type === 'head') {
       return '';
     } else if (type === 'head-footer') {
-      return '';
+      if (this._options.usePublic) {
+        return `<link rel="stylesheet" href="${config.rootURL}swagger-ui-dist/swagger-ui.css">`;
+      }
     } else if (type === 'body') {
       // include SVG definitions used by swagger-ui dist index.html
       return `
@@ -47,7 +89,12 @@ module.exports = {
         </svg>
       `;
     } else if (type === 'body-footer') {
-      return '';
+      if (this._options.usePublic) {
+        return [
+          'swagger-ui-bundle.js',
+          'swagger-ui-standalone-preset.js'
+        ].map(file => `<script src="${config.rootURL}swagger-ui-dist/${file}"></script>`);
+      }
     }
   }
 };

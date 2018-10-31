@@ -9,7 +9,10 @@ module.exports = {
 
     let options = app.options['ember-swagger-ui'] || {};
 
-    if (!options.usePublic) {
+    if (options.usePublic) {
+      let uglify = app.options['ember-cli-uglify'] = app.options['ember-cli-uglify'] || {};
+      uglify.exclude = (uglify.exclude || []).concat('swagger-ui-dist/**');
+    } else {
       app.import('node_modules/swagger-ui-dist/swagger-ui.css');
       app.import('node_modules/swagger-ui-dist/swagger-ui-bundle.js');
       app.import('node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js');

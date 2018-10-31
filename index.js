@@ -43,10 +43,10 @@ module.exports = {
     let absolutePath = resolve.sync('swagger-ui-dist', { basedir: this.project.root });
 
     trees.push(new Funnel(path.dirname(absolutePath), {
-      files: [
-        'swagger-ui.css',
-        'swagger-ui-bundle.js',
-        'swagger-ui-standalone-preset.js'
+      include: [
+        'swagger-ui.css*',
+        'swagger-ui-bundle.js*',
+        'swagger-ui-standalone-preset.js*'
       ],
       destDir: 'swagger-ui-dist',
       annotation: `Funnel ${this.name} treeForPublic`

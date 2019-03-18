@@ -1,58 +1,61 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import wait from 'ember-test-helpers/wait';
 import spec from './petstore';
+import { isPresent } from '@ember/utils';
 
-moduleForComponent('swagger-ui', {
-  integration: true
-});
+module('swagger-ui', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  this.render(hbs`{{swagger-ui config=config}}`);
-  assert.ok(this.$());
-});
-
-
-test('docExpansion as "none"', function(assert) {
-  this.set('config', {
-    spec,
-    docExpansion: 'none'
+  test('it renders', async function(assert) {
+    await render(hbs`{{swagger-ui config=config}}`);
+    let element = this.element.querySelector('.component-swagger-ui')
+    assert.ok(isPresent(element));
   });
-  this.render(hbs`{{swagger-ui config=config}}`);
 
-  return wait().then(() => {
-    let $opblocks = this.$('.opblock');
-    assert.equal($opblocks.length, 0);
+
+  test('docExpansion as "none"', async function(assert) {
+    this.set('config', {
+      spec,
+      docExpansion: 'none'
+    });
+    await render(hbs`{{swagger-ui config=config}}`);
+
+    return settled().then(() => {
+      let $opblocks = this.element.querySelectorAll('.opblock');
+      assert.equal($opblocks.length, 0);
+    });
   });
-});
 
-test('docExpansion as "list"', function(assert) {
-  this.set('config', {
-    spec,
-    docExpansion: 'list'
+  test('docExpansion as "list"', async function(assert) {
+    this.set('config', {
+      spec,
+      docExpansion: 'list'
+    });
+    await render(hbs`{{swagger-ui config=config}}`);
+
+    return settled().then(() => {
+      let $opblocks = this.element.querySelectorAll('.opblock');
+      let $body = this.element.querySelectorAll('.opblock-body');
+      assert.ok($opblocks.length > 0);
+      assert.equal($body.length, 0);
+    });
   });
-  this.render(hbs`{{swagger-ui config=config}}`);
 
-  return wait().then(() => {
-    let $opblocks = this.$('.opblock');
-    let $body = this.$('.opblock-body');
-    assert.ok($opblocks.length > 0);
-    assert.equal($body.length, 0);
-  });
-});
+  test('docExpansion as "full"', async function(assert) {
+    this.set('config', {
+      spec,
+      docExpansion: 'full'
+    });
+    await render(hbs`{{swagger-ui config=config}}`);
 
-test('docExpansion as "full"', function(assert) {
-  this.set('config', {
-    spec,
-    docExpansion: 'full'
-  });
-  this.render(hbs`{{swagger-ui config=config}}`);
-
-  return wait().then(() => {
-    let $opblocks = this.$('.opblock');
-    let $body = this.$('.opblock-body');
-    assert.ok($opblocks.length > 0);
-    assert.ok($body.length > 0);
+    return settled().then(() => {
+      let $opblocks = this.element.querySelectorAll('.opblock');
+      let $body = this.element.querySelectorAll('.opblock-body');
+      assert.ok($opblocks.length > 0);
+      assert.ok($body.length > 0);
+    });
   });
 });
 

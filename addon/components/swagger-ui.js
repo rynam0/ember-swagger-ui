@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import Swag from 'swagger-ui';
 
-const { Component } = Ember;
-const { SwaggerUIBundle } = Swag;
+const {
+  SwaggerUIBundle
+} = Swag;
 
 export default Component.extend({
   classNames: ['swagger-ui', 'component-swagger-ui'],
@@ -10,11 +11,12 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    let config = Ember.copy(this.get('config') || { deepLinking: false });
-    if (!config.dom_id) {
-      config.dom_id = `#${this.get('elementId')}`;
+    let config = this.get('config') || { deepLinking: false };
+    let merged = Object.assign({}, config);
+    if (!merged.dom_id) {
+      merged.dom_id = `#${this.get('elementId')}`;
     }
 
-    SwaggerUIBundle(config);
+    SwaggerUIBundle(merged);
   }
 });

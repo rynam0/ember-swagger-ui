@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-/* eslint-env node */
-module.exports = {
-  scenarios: [
-    {
-      name: 'ember-lts-2.12',
-      npm: {
-        devDependencies: {
-          'ember-source': '~2.12.0'
-        }
-      }
-    },
-    {
-      name: 'ember-lts-2.16.2',
-      npm: {
-        devDependencies: {
-          'ember-source': '~2.16.2'
-        }
-      }
-    },
-    {
-      name: 'ember-release',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#release'
-=======
 'use strict';
 
 const getChannelURL = require('ember-source-channel-url');
@@ -59,7 +33,6 @@ module.exports = function() {
               'ember-source': '~2.18.0'
             }
           }
->>>>>>> c489b90... message
         },
         {
           name: 'ember-release',

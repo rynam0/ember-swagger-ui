@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-swagger-ui',
+  name: require('./package').name,
 
   included(app) {
     this._super.included.apply(this, arguments);

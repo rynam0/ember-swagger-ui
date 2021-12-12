@@ -9,7 +9,7 @@ module('swagger-ui', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    await render(hbs`{{swagger-ui config=config}}`);
+    await render(hbs`<SwaggerUi @config={{this.config}}/>`);
     let element = this.element.querySelector('.component-swagger-ui')
     assert.ok(isPresent(element));
   });
@@ -20,7 +20,7 @@ module('swagger-ui', function(hooks) {
       spec,
       docExpansion: 'none'
     });
-    await render(hbs`{{swagger-ui config=config}}`);
+    await render(hbs`<SwaggerUi @config={{this.config}}/>`);
 
     return settled().then(() => {
       let $opblocks = this.element.querySelectorAll('.opblock');
@@ -33,7 +33,7 @@ module('swagger-ui', function(hooks) {
       spec,
       docExpansion: 'list'
     });
-    await render(hbs`{{swagger-ui config=config}}`);
+    await render(hbs`<SwaggerUi @config={{this.config}}/>`);
 
     return settled().then(() => {
       let $opblocks = this.element.querySelectorAll('.opblock');
@@ -48,7 +48,7 @@ module('swagger-ui', function(hooks) {
       spec,
       docExpansion: 'full'
     });
-    await render(hbs`{{swagger-ui config=config}}`);
+    await render(hbs`<SwaggerUi @config={{this.config}}/>`);
 
     return settled().then(() => {
       let $opblocks = this.element.querySelectorAll('.opblock');

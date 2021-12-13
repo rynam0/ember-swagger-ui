@@ -12,7 +12,7 @@ export default Controller.extend({
     this._super(...arguments);
 
     this.swaggerConfig = {
-      url: 'http://petstore.swagger.io/v2/swagger.json',
+      url: 'https://petstore.swagger.io/v2/swagger.json',
       deepLinking: false,
       presets: [
         SwaggerUIStandalonePreset,

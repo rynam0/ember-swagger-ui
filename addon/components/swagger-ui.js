@@ -11,10 +11,10 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    let config = this.get('config') || { deepLinking: false };
+    let config = this.config || { deepLinking: false };
     let merged = Object.assign({}, config);
     if (!merged.dom_id) {
-      merged.dom_id = `#${this.get('elementId')}`;
+      merged.dom_id = `#${this.elementId}`;
     }
 
     SwaggerUIBundle(merged);

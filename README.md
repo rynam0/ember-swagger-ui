@@ -45,7 +45,7 @@ The object takes any and all supported [swagger-ui 3.x configuration](https://gi
 
     export default Controller.extend({
       swaggerConfig: {
-        url: 'http://petstore.swagger.io/v2/swagger.json',
+        url: 'https://petstore.swagger.io/v2/swagger.json',
         deepLinking: false,
         presets: [
           SwaggerUIStandalonePreset,
@@ -89,14 +89,14 @@ Many of the swagger-ui configuration properties are available as attributes on t
 The currently supported options are documented below.  For more details on each of these options, please refer to the [swagger-ui docs](https://github.com/swagger-api/swagger-ui):
 
 #### url
-The component's default url is "http://petstore.swagger.io/v2/swagger.json".
+The component's default url is "https://petstore.swagger.io/v2/swagger.json".
 The following would load the API docs of the default [petstore example](http://petstore.swagger.io/):
 
 ```{{swagger-ui}}}```
 
 To load your API docs, simply supply the URL of your swagger.json as the "url" attribute value:
 
-```{{swagger-ui url="http://petstore.swagger.io/v2/swagger.json"}}```
+```{{swagger-ui url="https://petstore.swagger.io/v2/swagger.json"}}```
 
 #### spec
 As noted in the swagger-ui docs, you could alternately supply a JSON object that is a valid Swagger definition:
